@@ -1,0 +1,166 @@
+
+ body{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+a {
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+}
+  
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:focus {
+    background: none;
+}
+
+a:hover {
+    background: none;
+}
+
+a:active {
+    background: none;
+    color: black;
+}
+.title{
+    position: absolute;
+    z-index: 100;
+    top: 0%;
+    left: 0%;
+    background-color: rgb(154, 124, 90, 0.35);
+    right: 0px;
+    color: white
+}
+
+.title a{
+    color: white;
+}
+.contacts{
+    font-size: 200;
+    font-weight:500;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid white;
+}
+#phone_number{
+    justify-content: left;
+    margin-top: +35px;
+    margin-left: +200px;
+    font-size: 20px;
+}
+#logo{
+    justify-content: center;
+
+
+}
+.rent_now{
+    justify-content: right;
+    margin-top: +35px;
+    margin-right: +200px;
+    font-size:20px ;
+}
+#navbar{
+    margin-left: 15%;
+    margin-right: 15%;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: 250;
+}
+.greeting{
+    position: absolute;
+    width: 100%;
+    height: 95%;
+    background-image: url("kaif.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: 0px;
+    left: 0px;
+}
+.about-us{
+    width: 100%;
+    position: relative;
+    color: black;
+    border-top: 2px solid black;
+    font-weight: 350;
+    margin-top: 50%;
+    border-bottom: 2px solid black;
+}
+
+.block{
+    margin-top: 1%;
+    display:flex;
+    justify-content: space-around;
+
+}
+.sometext{
+    margin-top: 3%;
+    text-align:center;
+    font-weight: 500    ;
+}
+
+.block img{
+    margin-right: 55px;
+    width: 472px;
+    height: 472px;
+}
+.sometext{
+    max-width: 450px;
+    font-size: 20px;
+}
+.reviews{
+    padding-bottom: 50px;
+    border-bottom: 2px solid black;
+
+}
+.paratitle{
+    margin-top: 2%;
+    text-align: center;
+    padding-bottom: 35px;
+    font-weight: 500;
+    font-size: 35px;
+}
+.reviews-box{
+    display: flex;
+    justify-content:space-around;
+}
+.review{
+    
+        max-width: 400px;
+        max-height: 350px;
+        background-color: rgb(185, 152, 91);
+        border-radius: 10%;
+        margin: auto;
+        text-align: center;
+        padding: 20px;
+        font-size: 25px;
+    
+}
+footer{
+    height: 100px;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+
+}
+.copy{
+
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+
+
+}
+
