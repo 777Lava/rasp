@@ -90,10 +90,8 @@ a:active {
 }
 
 .about-box{
-
     width: 450px;
     display: flex;
-    
     background-size: cover;
 }
 .text{
@@ -162,6 +160,7 @@ a:active {
 }
 
 .ending{
+    display: flex;
     position: absolute;
     background-image: url(fon2.png);
     background-size: cover;
@@ -183,10 +182,6 @@ a:active {
 
 
 }
-
-
-
-
 footer{
     height: 100px;
     background-color: antiquewhite;
