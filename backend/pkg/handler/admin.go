@@ -45,7 +45,6 @@ func (h *Handler) updateBikes(c *gin.Context){
 
 func (h *Handler) deleteBikes(c *gin.Context){
 	id, err := strconv.Atoi(c.Param("id"))
-	fmt.Println(id)
 	if err != nil {
 		fmt.Print("invalid id param")
 		return

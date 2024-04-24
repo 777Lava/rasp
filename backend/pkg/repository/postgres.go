@@ -8,7 +8,7 @@ import (
 
 const (
 	userTable               = "users"
-	bikeReservationTable    = "bikeReservation"
+	bikeReservationTable    = "bikereservation"
 	bikesTable              = "bikes"
 	rollersTable            = "rollers"
 	rollersReservationTable = "rollersReservation"

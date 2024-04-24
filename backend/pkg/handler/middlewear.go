@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -45,6 +46,21 @@ func (h *Handler) adminIdentity(c *gin.Context) {
 		return 
 	}
 
+
+}
+
+func GetUserId(c *gin.Context) (int, error) {
+	id, ok := c.Get(userCtx)
+	if !ok {
+		fmt.Println(http.StatusUnauthorized,"users id not found")
+		return 0, gin.Error{}
+	}
+	idInt , ok := id.(int)
+	if !ok {
+		fmt.Println( http.StatusInternalServerError,"usersis not invalid types")
+		return 0 , gin.Error{}
+	}
+	return idInt, nil
 
 }
 

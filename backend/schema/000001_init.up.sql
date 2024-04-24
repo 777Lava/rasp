@@ -28,11 +28,15 @@ create table rollersReservation
 (
     id serial primary key,
     user_id int references users(id) on delete cascade not null,
-    roller_id int references rollers(id) on delete cascade not null
+    roller_id int references rollers(id) on delete cascade not null,
+    checkin integer not null,
+    checkout integer not null
 );
 create table bikeReservation
 (
     id serial primary key,
     user_id int references users(id) on delete cascade not null,
-    bike_id int references bikes(id) on delete cascade not null
+    bike_id int references bikes(id) on delete cascade not null,
+    checkin integer not null,
+    checkout integer not null
 );

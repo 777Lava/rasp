@@ -13,16 +13,16 @@ type Authorization interface {
 }
 
 type BikeReservation interface {
-	CreateBikeReservation(backend.BikeReservation) (int, error)
-	GetBikeReservation(userId int) ([]backend.BikeReservation)
-	DeleteBikesReservation(bikeReservId int) (error)
-	UpdateBikeReservation(backend.BikeReservation) (error)
+	CreateBikeReservation(userId int, res backend.BikeReservation) (int, error)
+	GetBikeReservation(userId int) ([]backend.BikeReservation,error)
+	DeleteBikesReservation(userId, bikeReservId int) (error)
+	UpdateBikeReservation(userId int, res backend.BikeReservation) (error)
 }
 type RollersReservation interface{
 	CreateRollersReservation(backend.RollersReservation) (int, error)
 	GetRollerReservation(userId int) ([]backend.RollersReservation)
-	UpdateRollerReservation(backend.RollersReservation) (error)
-	DeleteRollersReservation(rollerReservId int) (error)
+	UpdateRollerReservation(userId int , res backend.RollersReservation) (error)
+	DeleteRollersReservation(userId,RollerReservId int) (error)
 }
 
 type Admin interface{
@@ -37,11 +37,13 @@ type Admin interface{
 }
 
 
+
 type Repository struct {
 	Authorization
 	BikeReservation
 	RollersReservation
 	Admin
+
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
@@ -49,6 +51,5 @@ func NewRepository(db *sqlx.DB) *Repository {
 		Authorization: NewAuthPostgres(db),
 		BikeReservation: NewBikeReservPostgres(db),
 		Admin : NewAdministratrion(db),
-		
 	}
 }

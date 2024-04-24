@@ -26,12 +26,16 @@ func (h *Handler) InitRoutes() *gin.Engine {
 
 		bikes := api.Group("/bikes")
 		{
-			bikes.POST("/")
+			bikes.GET("/", h.getBikeReserv)
+			bikes.POST("/", h.createBikeReserv)
+			bikes.PUT("/", h.updateBikeReserv)
+			bikes.DELETE("/:id", h.deleteBikeReserv)
 
 		}
 		rollers := api.Group("/rollers")
 		{
 			rollers.POST("/")
+
 		}
 		api.GET("/")
 	}
@@ -41,15 +45,15 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			bikes.POST("/", h.addBikes)
 			bikes.GET("/", h.getBikes)
-			bikes.PUT("/",h.updateBikes)
+			bikes.PUT("/", h.updateBikes)
 			bikes.DELETE("/:id", h.deleteBikes)
 		}
 		rollers := admin.Group("/rollers")
 		{
-			rollers.POST("/",h.addRollers)
-			rollers.GET("/",h.getRollers)
+			rollers.POST("/", h.addRollers)
+			rollers.GET("/", h.getRollers)
 			rollers.PUT("/", h.updateRollers)
-			rollers.DELETE("/:id",h.deleteRollers)
+			rollers.DELETE("/:id", h.deleteRollers)
 		}
 	}
 

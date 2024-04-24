@@ -23,18 +23,31 @@ type Administration interface{
 
 	
 }
-type Reservation interface {
-	ReservBike(backend.BikeReservation) (int ,error)
-	ReservRoller(backend.RollersReservation) (int, error)
+type BikeReservation interface {
+	CreateBikeReservation(userId int , res backend.BikeReservation) (int ,error)
+	GetBikeReservation(userId int) ([]backend.BikeReservation,error)
+	UpdateBikeReservation(userId int , res backend.BikeReservation) error
+	DeleteBikesReservation(userId, bikeReservId int) error
 }
+type RollerReservation interface{
+	ReservRoller(backend.RollersReservation) (int, error)
+	GetReservations(userId int) ([]backend.BikeReservation, []backend.RollersReservation)
+	UpdateRollersReserv(backend.RollersReservation) error
+	DeleteRollersReserv(rollerReservId int) error
+}
+
+
 type Service struct {
 	Authorization
 	Administration
+	BikeReservation
+	RollerReservation
 }
 
 func  NewService(repos *repository.Repository) *Service{
 	return &Service{
 		Authorization: NewAuthService(repos.Authorization),
 		Administration: NewAdminService(repos.Admin),
+		BikeReservation: NewBikeReservationService(repos.BikeReservation),
 	}
 }
