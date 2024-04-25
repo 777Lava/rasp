@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"time"
 
+
+
 	"github.com/dgrijalva/jwt-go"
 )
 const (
@@ -47,8 +49,22 @@ func (s *AuthService) GenerateToken(username, password string) (string, error){
 	})
 	return token.SignedString([]byte(signingKey))
 }
-func (s *AuthService) ParseToken(token string) (int, error){
-	return 1, nil
+func (s *AuthService) ParseToken(accesToken string) (int, error){
+	token, err := jwt.ParseWithClaims(accesToken, &tokenClaims{}, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("invalid signing method")
+		}
+
+		return []byte(signingKey), nil
+	})
+	if err != nil {
+		return 0, err
+	}
+	claims, ok := token.Claims.(*tokenClaims)
+	if !ok {
+		return 0,  fmt.Errorf("token claims are not of type *tokenClaims ")
+	}
+	return claims.UserId, nil
 }
 
 func generatePasswordHash(password string) string {

@@ -33,7 +33,7 @@ func (h *Handler) userIdentity(c *gin.Context) {
 	c.Set(userCtx, userId)
 }
 
-func (h *Handler) adminIdentity(c *gin.Context) {
+func (h *Handler) adminIdentity(c *gin.Context)  {
 	header := c.GetHeader(authorizationHeader)
 	if header == "" {
 		fmt.Println("empty auth header")
@@ -61,6 +61,25 @@ func GetUserId(c *gin.Context) (int, error) {
 		return 0 , gin.Error{}
 	}
 	return idInt, nil
+
+}
+
+func checkAdmin(c *gin.Context) error {
+	admin,ok := c.Get("admin")
+	if !ok {
+		fmt.Println(http.StatusUnauthorized,"admin not found")
+		return gin.Error{}
+	}
+	adminStr , ok := admin.(string)
+	if !ok {
+		fmt.Println( http.StatusInternalServerError,"admin is not invalid types")
+		return gin.Error{}
+	}
+	if adminStr != "admin"{
+		fmt.Println(http.StatusUnauthorized,"admin not found")
+		return gin.Error{}
+	}
+	return nil
 
 }
 

@@ -23,7 +23,6 @@ type getTimePostgres struct {
 }
 type getBikePostgres struct {
 	Id       int   `json:"id" db:"id"`
-	UserId   int   `json:"userId db:"user_id"`
 	BikeId   int   `json:"bikeId" db:"bike_id"`
 	Checkin  int64 `json:"checkin" db:"checkin"`
 	Checkout int64 `json:"checkout" db:"checkout"`
@@ -39,6 +38,9 @@ func (a *bikeReservationPostgres) CreateBikeReservation(userId int, res backend.
 	var lists []getTimePostgres
 	checktimeQuery := fmt.Sprintf(`select id, checkin, checkout from %s where bike_id = $1`, bikeReservationTable)
 	err = a.db.Select(&lists, checktimeQuery, res.BikeId)
+	if err != nil {
+		fmt.Println("ошибка в селекте ", err.Error())
+	}
 	for _, list := range lists {
 		if (res.Checkin.Unix()-list.Checkin >= 0 && (res.Checkin.Unix()-list.Checkout <= 0)) ||
 			(res.Checkout.Unix()-list.Checkin >= 0 && res.Checkout.Unix()-list.Checkout <= 0) {

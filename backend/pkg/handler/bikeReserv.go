@@ -32,6 +32,10 @@ func (h *Handler) createBikeReserv(c *gin.Context) {
 
 	// Парсим строку в объект time.Time
 	timecheckin, err := time.Parse("02-01-2006", get.Checkin)
+	if err != nil {
+		fmt.Println("Ошибка при парсинге строки:", err)
+		return
+	}
 	timechekout, err := time.Parse("02-01-2006", get.Checkout)
 	if err != nil {
 		fmt.Println("Ошибка при парсинге строки:", err)
@@ -91,7 +95,15 @@ func (h *Handler) updateBikeReserv(c *gin.Context) {
 		return
 	}
 	timecheckin, err := time.Parse("02-01-2006", get.Checkin)
+	if err != nil {
+		fmt.Println("Ошибка при парсинге строки:", err)
+		return
+	}
 	timechekout, err := time.Parse("02-01-2006", get.Checkout)
+	if err != nil {
+		fmt.Println("Ошибка при парсинге строки:", err)
+		return
+	}
 	input.Id = get.Id
 	input.BikeId = get.BikeId
 	input.Checkin = timecheckin
